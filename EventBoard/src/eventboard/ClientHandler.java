@@ -1,4 +1,3 @@
-
 package eventboard;
 
 /**
@@ -15,21 +14,25 @@ public class ClientHandler implements Runnable {
     public ClientHandler(Socket socket) {
         this.clientSocket = socket;
     }
-
+    
     @Override
     public void run() {
         try (
+            //Read from client
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            //Write to client
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
         ) {
             
             String inputLine;
+            //main comm loop
             while ((inputLine = in.readLine()) != null) {
+                //STOP
                 if (inputLine.equalsIgnoreCase("STOP")) {
                     out.println("TERMINATE");
                     break;
                 }
-
+                // checks for correct expected input
                 String[] parts = inputLine.split(";", 4);
                 if (parts.length < 4) {
                     out.println("ERROR: Invalid message format");

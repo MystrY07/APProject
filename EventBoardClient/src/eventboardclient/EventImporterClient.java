@@ -1,4 +1,3 @@
-
 package eventboardclient;
 
 /**
@@ -76,9 +75,9 @@ public class EventImporterClient {
                     line = line.trim();
                     if (line.isEmpty()) continue;
 
-                    // Expected format for importing events: date; time; description 
+                    // Expected format for importing events: date; time; description
                     String[] parts = line.split(";", 3);
-                    //if line doesnt have atleast 2 semicolons 
+                    //if line doesnt have atleast 2 semicolons
                     if (parts.length != 3 ||
                             parts[0].trim().isEmpty() ||
                             parts[1].trim().isEmpty() ||
@@ -95,7 +94,6 @@ public class EventImporterClient {
 
                     // Construct proper ADD command with proper format
                     String addCmd = String.format("add; %s; %s; %s", date, time, desc);
-
                     out.println(addCmd);
 
                     String response = in.readLine();

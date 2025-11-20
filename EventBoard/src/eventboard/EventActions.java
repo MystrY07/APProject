@@ -1,4 +1,3 @@
-
 package eventboard;
 
 /**
@@ -51,10 +50,7 @@ public class EventActions {
             if (e.getDate().equals(date.trim())) filtered.add(e);
         }
 
-        // Sort by time "6pm" / "12pm" etc
-        filtered.sort(Comparator.comparing(EventRecord::getTime));
-
-        // Build output: "date; time, description; time, description; ..."
+        // Build output: "date; time, description; time, description; .."
         if (filtered.isEmpty()) return date.trim() + "; -";
 
         StringBuilder sb = new StringBuilder();
